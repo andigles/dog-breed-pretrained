@@ -1,0 +1,11 @@
+name: udacity_dog_breed
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch         # pip "torch"
+  - torchvision
+  - numpy
+  - pandas
+  - pillow
