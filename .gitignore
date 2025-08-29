@@ -1,0 +1,12 @@
+# Data & models
+data/raw/
+models/
+*.pth
+*.pt
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+EOF

@@ -1,0 +1,96 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = vgg 
+ dogfile = dognames.txt
+
+Pet Image Label Dictionary has 4 key-value pairs.
+Below are 4 of them:
+ 1 key:                     Dog_02.jpg  label:                        dog
+ 2 key:                    Lion_01.jpg  label:                       lion
+ 3 key:              Teddy_Bear_01.jpg  label:                 teddy bear
+ 4 key:                     Dog_01.jpg  label:                        dog
+
+Filename= Dog_02.jpg 
+pet_image Label= dog 
+Classifier Label= collie 
+match= 0
+
+Filename= Lion_01.jpg 
+pet_image Label= lion 
+Classifier Label= lion, king of beasts, panthera leo 
+match= 1
+
+Filename= Teddy_Bear_01.jpg 
+pet_image Label= teddy bear 
+Classifier Label= teddy, teddy bear 
+match= 1
+
+Filename= Dog_01.jpg 
+pet_image Label= dog 
+Classifier Label= collie 
+match= 0
+
+     MATCH:
+
+                   Lion_01.jpg: 
+Real:                       lion   Classifier: lion, king of beasts, panthera leo
+
+             Teddy_Bear_01.jpg: 
+Real:                 teddy bear   Classifier:              teddy, teddy bear
+
+ NOT A MATCH:
+
+                    Dog_02.jpg: 
+Real:                        dog   Classifier:                         collie
+
+                    Dog_01.jpg: 
+Real:                        dog   Classifier:                         collie
+
+# Total Images 4 # Matches: 2 # NOT Matches: 2
+
+     MATCH:
+
+                   Lion_01.jpg: 
+Real:                       lion   Classifier: lion, king of beasts, panthera leo  
+PetLabelDog: 0  ClassLabelDog: 0
+
+             Teddy_Bear_01.jpg: 
+Real:                 teddy bear   Classifier:              teddy, teddy bear  
+PetLabelDog: 0  ClassLabelDog: 0
+
+ NOT A MATCH:
+
+                    Dog_02.jpg: 
+Real:                        dog   Classifier:                         collie  
+PetLabelDog: 1  ClassLabelDog: 1
+
+                    Dog_01.jpg: 
+Real:                        dog   Classifier:                         collie  
+PetLabelDog: 1  ClassLabelDog: 1
+
+# Total Images 4 # Matches: 2 # NOT Matches: 2
+
+ ** Statistics from calculates_results_stats() function:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+
+ ** Check Statistics - calculated from this function as a check:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+
+
+*** Results Summary for CNN Model Architecture VGG ***
+N Images            :   4
+N Dog Images        :   2
+N Not-a Dog Images  :   2
+ 
+pct_match           : 50.0
+pct_correct_dogs    : 100.0
+pct_correct_breed   : 0.0
+pct_correct_notdogs : 100.0
+
+INCORRECT Dog Breed Assignment:
+Real:                        dog   Classifier:                         collie
+Real:                        dog   Classifier:                         collie
+
+** Total Elapsed Runtime: 0:0:9
