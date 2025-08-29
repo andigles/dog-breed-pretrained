@@ -21,6 +21,7 @@
 #
 ##
 # Imports classifier function for using CNN to classify images 
+import os
 from classifier import classifier 
 
 # TODO 3: Define classify_images function below, specifically replace the None
@@ -69,7 +70,7 @@ def classify_images(images_dir, results_dic, model):
     ## Adding classifier label and comparison of labels to the dictionary.
     
     for key in results_dic:
-        classifier_label = classifier(images_dir + key, model)
+        classifier_label = classifier(os.path.join(images_dir, key), model)
         
         # Formatting classifier label
         results_dic[key].append(classifier_label.lower().strip())
