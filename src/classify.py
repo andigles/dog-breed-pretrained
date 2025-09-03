@@ -24,17 +24,50 @@ from torchvision.models import ResNet18_Weights, VGG16_Weights, AlexNet_Weights
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # Module constants (private)
+# Tiny, resilient fallback if the file path is wrong or missing.
 _DEFAULT_DOGS = frozenset({
-    # tiny seed so code still works if file missing
-    "labrador retriever", "golden retriever", "german shepherd",
-    "bulldog", "poodle", "beagle", "rottweiler", "boxer",
-    "chihuahua", "siberian husky", "dachshund", "great dane", "border collie"
+    "labrador retriever",
+    "golden retriever",
+    "german shepherd",
+    "poodle",
+    "bulldog",
+    "beagle",
+    "rottweiler",
+    "yorkshire terrier",
+    "boxer",
+    "dachshund",
+    "siberian husky",
+    "great dane",
+    "chihuahua",
+    "shih tzu",
+    "border collie",
+    "french bulldog",
+    "doberman pinscher",
+    "australian shepherd",
+    "cocker spaniel",
+    "saint bernard",
 })
 
+# Curated “family” tokens that safely boost recall.
+# Keep them fairly specific to avoid false positives.
 _DEFAULT_DOG_STEMS = frozenset({
-    # broad “family” words that appear in many breed names
-    "terrier", "retriever", "hound", "spaniel", "shepherd",
-    "pointer", "setter", "mastiff", "collie", "poodle", "bulldog"
+    "terrier",
+    "retriever",
+    "hound",
+    "spaniel",
+    "shepherd",
+    "sheepdog",
+    "pointer",
+    "setter",
+    "mastiff",
+    "collie",
+    "poodle",
+    "bulldog",
+    "schnauzer",
+    "pinscher",
+    "spitz",
+    "ridgeback",
+    "corgi",
 })
 
 def _canon(s: str) -> str:
@@ -46,7 +79,7 @@ def _canon(s: str) -> str:
     s = re.sub(r"[_-]", " ", s)          # underscores/hyphens → space
     s = re.sub(r"[^a-z\s]", " ", s)      # any other punctuation → space
     s = re.sub(r"\s+", " ", s).strip()   # collapse + full trim
-    
+
     return s
 
 @lru_cache(maxsize=1)
@@ -67,9 +100,10 @@ def _dog_set(path: str = "data/dognames.txt") -> frozenset[str]:
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8", errors="ignore") as f:
             for line in f:
-                label = _canon(line)
-                if label:  # skip empty after normalization
-                    s.add(label)
+                for alias in line.split(","):
+                    label = _canon(alias)
+                    if label:
+                        s.add(label)
 
     # Make sure stems are present (harmless if already there)
     s.update(_DEFAULT_DOG_STEMS)
@@ -78,35 +112,29 @@ def _dog_set(path: str = "data/dognames.txt") -> frozenset[str]:
     return frozenset(s)
 
 def is_dog_label(label: str, dognames_path: str = "data/dognames.txt") -> bool:
-    
-    # label_c = _canon(label)    
-    label_c = _canon(label)
-
-    # dogs = _dog_set(dognames_path)
     dogs = _dog_set(dognames_path)
+
+    # IMPORTANT: check each comma-separated piece from the classifier
+    for piece in label.split(","):
+        chunk = _canon(piece)
+        if not chunk:
+            continue
+
+        # 1) Exact match still helps for simple cases
+        if chunk in dogs:
+
+            return True
+
+        # 2) Phrase containment: does any alias appear in the chunk?
+        # Use word boundaries to avoid partial-token hits (e.g., "hound" in "houndstooth")
+        for alias in dogs:
+            if re.search(rf"\b{re.escape(alias)}\b", chunk):
+                
+                return True
+            
+    return False
+
+
+
+
     
-    # # # return True on exact match OR if any word of label_c is in dogs
-    # # if label_c in dogs:
-    # #      return True
-    
-    # # words = label_c.split()
-    
-    # # for w in words:
-    # #      if w in dogs:
-    # #          return True
-         
-    # return False
-
-
-    
-dogs = _dog_set("C:/Users/amir_/OneDrive/Documentos/MEGA/Etudes/programming/python/ai-programming-with-python/project/dog-breed-pretrained/data/dognames.txt")
-
-print(f"Total normalized entries: {len(dogs)}")
-for i, name in enumerate(sorted(dogs)[:40], 1):
-    print(f"{i:>3}. {name}")
-
-
-
-
-
-
