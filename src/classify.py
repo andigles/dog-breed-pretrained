@@ -70,6 +70,13 @@ _DEFAULT_DOG_STEMS = frozenset({
     "corgi",
 })
 
+class _ModelBundle:
+    def __init__(self, model, preprocess, categories):
+        self.model = model
+        self.preprocess = preprocess
+        self.categories = categories
+
+
 def _canon(s: str) -> str:
     """
     Lowercase, trim, replace '_' and '-' with spaces, drop other punctuation,
@@ -134,7 +141,34 @@ def is_dog_label(label: str, dognames_path: str = "data/dognames.txt") -> bool:
             
     return False
 
-
-
-
+@lru_cache(maxsize=3)
+def load_model(name: str = "resnet") -> _ModelBundle:
+    # pick weights & model based on name
+    # call model.eval()
+    # get preprocess and categories
+    # sanity-check categories not None
+    # return _ModelBundle(model, preprocess, categories)
     
+    name = name.lower()
+
+    if name == "resnet":
+        weights = ResNet18_Weights.DEFAULT
+        model = models.resnet18(weights=weights)
+    elif name == "vgg":
+        weights = VGG16_Weights.DEFAULT
+        model = models.vgg16(weights=weights)
+    elif name == "alexnet":
+        weights = AlexNet_Weights.DEFAULT
+        model = models.alexnet(weights=weights)
+    else:    
+        raise ValueError(f"Unsupported model name: {name}. Supported: resnet, vgg, alexnet")
+    
+    model.eval()
+    
+    preprocess = weights.transforms()
+    categories = weights.meta.get("categories", None)
+
+    if categories is None:
+        raise ValueError(f"Model weights for {name} do not include categories.")
+
+    return _ModelBundle(model, preprocess, categories)
