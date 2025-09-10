@@ -195,7 +195,3 @@ def classify_image(image_path: str, model_name: str = "resnet") -> Tuple[str, bo
     conf = float(probs[idx].item())
 
     return label, is_dog_label(label), conf
-
-
-print(classify_image("data/sample/pet_images/Beagle_01125.jpg","resnet"))
-
