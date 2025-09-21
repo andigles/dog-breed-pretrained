@@ -57,3 +57,19 @@ def eval_model_on_images(model_name: str, images: list[Path]) -> list[ResultRow]
 
     return rows
 
+def summarize(rows: list[ResultRow]) -> None:
+    by_model: dict[str, list[ResultRow]] = {}
+    for r in rows:
+        by_model.setdefault(r.model, []).append(r)
+
+    for model, mrows in by_model.items():
+        by_model: dict[str, list[ResultRow]] = {}
+        n = len(mrows)
+        dog_acc = (sum(r.truth_is_dog == r.pred_is_dog for r in mrows) / n) if n else 0.0
+        label_rate = (sum(r.label_match for r in mrows) / n) if n else 0.0
+
+        print(f"\nModel: {model}")
+        print(f"  Images:             {n}")
+        print(f"  Dog/not-dog accuracy: {dog_acc:.3f}")
+        print(f"  Label-match rate:     {label_rate:.3f}")    
+
