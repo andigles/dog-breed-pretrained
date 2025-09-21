@@ -8,4 +8,16 @@ import csv
 import re 
 from typing import Iterable 
 
-from .classify import classify_image, is_dog_label, _canon 
+from .classify import classify_image, is_dog_label, _canon
+
+@dataclass(frozen=True)
+class ResultRow:
+    image: str
+    model: str
+    truth_label: str
+    pred_label: str
+    truth_is_dog: bool
+    pred_is_dog: bool
+    label_match: bool
+    conf: float
+
