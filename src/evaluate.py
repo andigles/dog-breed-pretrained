@@ -1,8 +1,10 @@
 # src/evaluate.py
 from __future__ import annotations
+
 from dataclasses import dataclass 
 from pathlib import Path 
 import argparse 
+
 import csv 
 import re 
 from typing import Iterable 
@@ -90,10 +92,48 @@ def write_csv(rows: list[ResultRow], out_path: Path) -> None:
                 f"{r.conf:.6f}"
             ])
 
-rows = [
-    ResultRow("img1.jpg","resnet","golden retriever","golden retriever", True, True, True, 0.7869749),
-    ResultRow("img2.jpg","alexnet","golden retriever","tibetan mastiff", True, True, False, 0.3352732),
-]
-write_csv(rows, Path("results/results.csv"))
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(
+        description="Evaluate image classifiers over a folder of images."
+    )
+    p.add_argument(
+        "--images", required=True, help="Folder with images"
+    )
+    p.add_argument(
+        "--model",
+        default="resnet",
+        choices=["resnet", "vgg", "alexnet", "all"],
+        help="Which model to run (or 'all')",
+    )
+    p.add_argument(
+        "--out",
+        default="results/results.csv",
+        help="CSV output path",
+    )
+    return p.parse_args()
 
-print(Path("results/results.csv").read_text(encoding="utf-8").splitlines()[:3])
+def main() -> int:
+    args = parse_args()
+    images = list_images(Path(args.images))
+    if not images: 
+        print("No images found. Check --images path and extensions.") 
+        return 2
+
+    models = ["resnet", "vgg", "alexnet"] if args.model == "all" else [args.model]
+    print("Models to run:", ", ".join(models))
+
+    all_rows: list[ResultRow] = []
+    for model in models:
+        all_rows.extend(eval_model_on_images(model, images))
+    
+    summarize(all_rows)
+    write_csv(all_rows, Path(args.out))
+    print(f"\nWrote results to {args.out}")
+    return 0
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+
+
+
+
