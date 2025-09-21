@@ -1,14 +1,14 @@
 # src/evaluate.py
 from __future__ import annotations
-
 from dataclasses import dataclass 
 from pathlib import Path 
 import argparse 
 import csv 
 import re 
 from typing import Iterable 
-
 from .classify import classify_image, is_dog_label, _canon
+
+_NUMS = re.compile(r"\d+")
 
 @dataclass(frozen=True)
 class ResultRow:
@@ -27,3 +27,6 @@ def list_images(root: Path, exts: set[str] = {".jpg", ".jpeg", ".png"}) -> list[
     imgs.sort()
     return imgs
 
+def truth_from_path(p: Path) -> str:
+    stem = _NUMS.sub("", p.stem)
+    return _canon(stem)
