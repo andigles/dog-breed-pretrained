@@ -1,0 +1,3 @@
+image,model,truth_label,pred_label,truth_is_dog,pred_is_dog,label_match,conf
+img1.jpg,resnet,golden retriever,golden retriever,1,1,1,0.786975
+img2.jpg,alexnet,golden retriever,tibetan mastiff,1,1,0,0.335273

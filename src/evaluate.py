@@ -73,3 +73,27 @@ def summarize(rows: list[ResultRow]) -> None:
         print(f"  Dog/not-dog accuracy: {dog_acc:.3f}")
         print(f"  Label-match rate:     {label_rate:.3f}")    
 
+def write_csv(rows: list[ResultRow], out_path: Path) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["image", "model", "truth_label", "pred_label", "truth_is_dog", "pred_is_dog", "label_match", "conf"])
+        for r in rows:
+            w.writerow([
+                r.image,
+                r.model,
+                r.truth_label,
+                r.pred_label,
+                int(r.truth_is_dog),
+                int(r.pred_is_dog),
+                int(r.label_match),
+                f"{r.conf:.6f}"
+            ])
+
+rows = [
+    ResultRow("img1.jpg","resnet","golden retriever","golden retriever", True, True, True, 0.7869749),
+    ResultRow("img2.jpg","alexnet","golden retriever","tibetan mastiff", True, True, False, 0.3352732),
+]
+write_csv(rows, Path("results/results.csv"))
+
+print(Path("results/results.csv").read_text(encoding="utf-8").splitlines()[:3])
