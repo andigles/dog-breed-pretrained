@@ -21,3 +21,9 @@ class ResultRow:
     label_match: bool
     conf: float
 
+def list_images(root: Path, exts: set[str] = {".jpg", ".jpeg", ".png"}) -> list[Path]:
+    root = Path(root)
+    imgs = [p for p in root.iterdir() if p.suffix.lower() in exts]
+    imgs.sort()
+    return imgs
+

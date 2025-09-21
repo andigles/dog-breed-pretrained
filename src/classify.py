@@ -175,15 +175,6 @@ def load_model(name: str = "resnet") -> _ModelBundle:
 
 @torch.inference_mode()
 def classify_image(image_path: str, model_name: str = "resnet") -> Tuple[str, bool, float]:
-    # b = load_model(model_name)
-    # img = Image.open(image_path).convert("RGB")
-    # x = b.preprocess(img).unsqueeze(0)
-    # logits = b.model(x)
-    # probs = torch.softmax(logits, dim=1)[0]
-    # idx = int(probs.argmax().item())
-    # label = _canon(b.categories[idx])
-    # conf = float(probs[idx].item())
-    # return label, is_dog_label(label), conf
     
     b = load_model(model_name)
     img = Image.open(image_path).convert("RGB")
