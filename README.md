@@ -129,3 +129,5 @@ Notes:
 ## Credits
 
 Adapted from Udacity’s “Use a Pre‑trained Image Classifier to Identify Dog Breeds” and extended with a modern CLI and evaluation CSV.
+
+License: MIT © 2025 Andrés Iglesias
