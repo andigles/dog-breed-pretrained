@@ -1,41 +1,19 @@
 image,model,truth_label,pred_label,truth_is_dog,pred_is_dog,label_match,conf
 Basenji_00963.jpg,resnet,basenji,basenji,1,1,1,0.993279
-Basenji_00974.jpg,resnet,basenji,basenji,1,1,1,0.999803
-Basset_hound_01034.jpg,resnet,basset hound,basset,1,1,0,0.979315
 Beagle_01125.jpg,resnet,beagle,beagle,1,1,1,0.734900
-Beagle_01141.jpg,resnet,beagle,beagle,1,1,1,0.630055
-Beagle_01170.jpg,resnet,beagle,walker hound,1,1,0,0.734366
-Boston_terrier_02259.jpg,resnet,boston terrier,boston bull,1,1,0,0.930880
-Boston_terrier_02285.jpg,resnet,boston terrier,boston bull,1,1,0,0.810594
-Boston_terrier_02303.jpg,resnet,boston terrier,boston bull,1,1,0,0.967870
-Boxer_02426.jpg,resnet,boxer,boxer,1,1,1,0.976077
 cat_01.jpg,resnet,cat,norwegian elkhound,0,1,0,0.275443
-cat_02.jpg,resnet,cat,tabby,0,0,0,0.521367
-cat_07.jpg,resnet,cat,egyptian cat,0,0,0,0.576372
-Cocker_spaniel_03750.jpg,resnet,cocker spaniel,cocker spaniel,1,1,1,0.994073
-Collie_03797.jpg,resnet,collie,collie,1,1,1,0.921674
-Dalmatian_04017.jpg,resnet,dalmatian,dalmatian,1,1,1,0.933058
-Dalmatian_04037.jpg,resnet,dalmatian,dalmatian,1,1,1,0.997824
-Dalmatian_04068.jpg,resnet,dalmatian,dalmatian,1,1,1,0.983519
-fox_squirrel_01.jpg,resnet,fox squirrel,fox squirrel,0,0,1,0.999629
 gecko_02.jpg,resnet,gecko,african chameleon,0,0,0,0.788021
-gecko_80.jpg,resnet,gecko,tailed frog,0,0,0,0.605968
-German_shepherd_dog_04890.jpg,resnet,german shepherd dog,german shepherd,1,1,0,0.824952
-German_shepherd_dog_04931.jpg,resnet,german shepherd dog,german shepherd,1,1,0,0.972700
-German_shorthaired_pointer_04986.jpg,resnet,german shorthaired pointer,german short haired pointer,1,1,0,0.995916
 Golden_retriever_05182.jpg,resnet,golden retriever,leonberg,1,1,0,0.773356
-Golden_retriever_05195.jpg,resnet,golden retriever,golden retriever,1,1,1,0.955602
-Golden_retriever_05223.jpg,resnet,golden retriever,golden retriever,1,1,1,0.870368
-Golden_retriever_05257.jpg,resnet,golden retriever,golden retriever,1,1,1,0.989791
-Great_dane_05320.jpg,resnet,great dane,great dane,1,1,1,0.942992
-great_horned_owl_02.jpg,resnet,great horned owl,great grey owl,0,0,0,0.757369
-Great_pyrenees_05367.jpg,resnet,great pyrenees,kuvasz,1,1,0,0.741295
-Great_pyrenees_05435.jpg,resnet,great pyrenees,great pyrenees,1,1,1,0.587063
-Miniature_schnauzer_06884.jpg,resnet,miniature schnauzer,miniature schnauzer,1,1,1,0.930880
-polar_bear_04.jpg,resnet,polar bear,ice bear,0,0,0,0.993244
-Poodle_07927.jpg,resnet,poodle,standard poodle,1,1,0,0.892479
-Poodle_07956.jpg,resnet,poodle,standard poodle,1,1,0,0.880653
 Rabbit_002.jpg,resnet,rabbit,wood rabbit,0,0,0,0.992650
-Saint_bernard_08010.jpg,resnet,saint bernard,saint bernard,1,1,1,0.997518
-Saint_bernard_08036.jpg,resnet,saint bernard,saint bernard,1,1,1,0.943253
-skunk_029.jpg,resnet,skunk,skunk,0,0,1,0.998236
+Basenji_00963.jpg,vgg,basenji,basenji,1,1,1,0.999615
+Beagle_01125.jpg,vgg,beagle,beagle,1,1,1,0.824529
+cat_01.jpg,vgg,cat,lynx,0,0,0,0.461211
+gecko_02.jpg,vgg,gecko,banded gecko,0,0,0,0.577400
+Golden_retriever_05182.jpg,vgg,golden retriever,golden retriever,1,1,1,0.786975
+Rabbit_002.jpg,vgg,rabbit,wood rabbit,0,0,0,0.978301
+Basenji_00963.jpg,alexnet,basenji,basenji,1,1,1,0.991388
+Beagle_01125.jpg,alexnet,beagle,beagle,1,1,1,0.657071
+cat_01.jpg,alexnet,cat,african hunting dog,0,1,0,0.749325
+gecko_02.jpg,alexnet,gecko,alligator lizard,0,0,0,0.438051
+Golden_retriever_05182.jpg,alexnet,golden retriever,tibetan mastiff,1,1,0,0.335273
+Rabbit_002.jpg,alexnet,rabbit,wood rabbit,0,0,0,0.995599

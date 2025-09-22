@@ -105,9 +105,9 @@ Kept for historical context from the Udacity project; **prefer the new CLI above
 ### Legacy usage
 
 ```bash
-python check_images.py --dir data/sample/pet_images --arch resnet --dogfile data/dognames.txt
-python check_images.py --dir data/sample/pet_images --arch vgg     --dogfile data/dognames.txt
-python check_images.py --dir data/sample/pet_images --arch alexnet --dogfile data/dognames.txt
+python legacy/check_images.py --dir data/sample/pet_images --arch resnet --dogfile data/dognames.txt
+python legacy/check_images.py --dir data/sample/pet_images --arch vgg --dogfile data/dognames.txt
+python legacy/check_images.py --dir data/sample/pet_images --arch alexnet --dogfile data/dognames.txt
 ```
 
 Notes:
