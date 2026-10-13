@@ -12,7 +12,7 @@ Runs in minutes — no training — prints a per‑model summary and writes a CS
 ### Requirements
 
 - Python 3.10+ (adjust if your environment differs)
-- PyTorch and TorchVision versions compatible with your Python (installed via `requirements.txt` or manually)
+- PyTorch and TorchVision versions compatible with your Python (installed via `requirements.txt`)
 
 ### Install
 
@@ -27,7 +27,7 @@ source .venv/Scripts/activate
 # macOS/Linux:
 # source .venv/bin/activate
 
-pip install -r requirements.txt  # if you have one; otherwise install torch, torchvision
+pip install -r requirements.txt
 
 # Option B) Conda (only if you prefer conda)
 # conda env create -f environment.yml
@@ -65,9 +65,8 @@ python -m src.evaluate --images data/sample/pet_images --model resnet
 │  └─ sample/pet_images/   # tiny demo set (you can point to your own images)
 ├─ results/                # created on first run (CSV lives here)
 ├─ README.md
-├─ requirements.txt        # if present
-└─ environment.yml         # if you maintain a conda env (optional)
-```
+├─ requirements.txt        # Python dependencies
+└─ environment.yml         # conda environment (optional)
 
 ---
 
@@ -122,7 +121,7 @@ Notes:
 - ✅ `src/classify.py` — reusable inference (`classify_image`, `_canon`, `is_dog_label`).
 - ✅ `src/evaluate.py` — CLI that prints summary and writes `results/results.csv`.
 - ⏳ Light tests for label cleanup and dog/not‑dog checks (optional).
-- ⏳ Add an MIT License file (optional).
+- ✅ MIT License file.
 
 ---
 
