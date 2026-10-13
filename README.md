@@ -67,7 +67,7 @@ python -m src.evaluate --images data/sample/pet_images --model resnet
 ├─ README.md
 ├─ requirements.txt        # Python dependencies
 └─ environment.yml         # conda environment (optional)
-
+```
 ---
 
 ## Troubleshooting
